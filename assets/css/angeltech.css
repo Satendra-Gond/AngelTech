@@ -3382,12 +3382,26 @@ h3 {
         transition: max-height 0.25s ease;
     }
 
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown:focus-within .nav-dropdown-menu,
+    .nav-dropdown.is-open .nav-dropdown-menu {
+        transform: none;
+    }
+
     .nav-dropdown.is-open .nav-dropdown-menu {
         max-height: 260px;
     }
 
     .nav-dropdown-menu a {
+        display: block;
         padding: 9px 0 9px 12px;
+        color: var(--angel-ink);
+        background: transparent;
+    }
+
+    .nav-dropdown-menu a:hover {
+        color: var(--angel-blue);
+        background: var(--angel-soft);
     }
 
     .nav-quote-item {
