@@ -6,11 +6,14 @@
     var nav = document.querySelector("#mainNav");
     var scrollTop = document.querySelector(".scroll-top");
     var revealItems = document.querySelectorAll(".reveal");
-    var navLinks = document.querySelectorAll(".nav-link[href^='#']");
+    var navLinks = document.querySelectorAll(".nav-link:not(.nav-dropdown-toggle), .nav-dropdown-menu a");
+    var anchorNavLinks = document.querySelectorAll(".nav-link[href^='#']");
+    var navDropdownToggles = document.querySelectorAll(".nav-dropdown-toggle");
     var newsletterForm = document.querySelector(".newsletter-form");
     var contactForm = document.querySelector(".contact-form");
     var testimonialSlider = document.querySelector("[data-testimonial-slider]");
     var heroSlider = document.querySelector("[data-hero-slider]");
+    var aboutTabs = document.querySelector("[data-about-tabs]");
     var statCounters = document.querySelectorAll("[data-count]");
 
     function updateChrome() {
@@ -25,6 +28,7 @@
 
     function animateCounter(counter) {
         var target = Number(counter.getAttribute("data-count"));
+        var decimals = Number(counter.getAttribute("data-count-decimals") || 0);
         var duration = 1400;
         var startTime = null;
 
@@ -39,18 +43,22 @@
 
             progress = Math.min((timestamp - startTime) / duration, 1);
             eased = 1 - Math.pow(1 - progress, 3);
-            value = Math.round(target * eased);
+            value = decimals > 0 ? (target * eased).toFixed(decimals) : String(Math.round(target * eased));
             counter.textContent = String(value);
 
             if (progress < 1) {
                 window.requestAnimationFrame(tick);
             } else {
-                counter.textContent = String(target);
+                counter.textContent = decimals > 0 ? target.toFixed(decimals) : String(target);
             }
         }
 
         if (!Number.isFinite(target)) {
             return;
+        }
+
+        if (!Number.isFinite(decimals) || decimals < 0) {
+            decimals = 0;
         }
 
         window.requestAnimationFrame(tick);
@@ -62,10 +70,31 @@
             navToggle.setAttribute("aria-expanded", String(isOpen));
         });
 
+        navDropdownToggles.forEach(function (toggle) {
+            toggle.addEventListener("click", function () {
+                var dropdown = toggle.closest(".nav-dropdown");
+                var isOpen;
+
+                if (!dropdown) {
+                    return;
+                }
+
+                isOpen = dropdown.classList.toggle("is-open");
+                toggle.setAttribute("aria-expanded", String(isOpen));
+            });
+        });
+
         navLinks.forEach(function (link) {
             link.addEventListener("click", function () {
                 nav.classList.remove("show");
                 navToggle.setAttribute("aria-expanded", "false");
+                navDropdownToggles.forEach(function (toggle) {
+                    var dropdown = toggle.closest(".nav-dropdown");
+                    if (dropdown) {
+                        dropdown.classList.remove("is-open");
+                    }
+                    toggle.setAttribute("aria-expanded", "false");
+                });
             });
         });
     }
@@ -107,9 +136,9 @@
         });
     }
 
-    navLinks.forEach(function (link) {
+    anchorNavLinks.forEach(function (link) {
         link.addEventListener("click", function () {
-            navLinks.forEach(function (item) {
+            anchorNavLinks.forEach(function (item) {
                 item.classList.remove("active");
             });
             link.classList.add("active");
@@ -184,6 +213,27 @@
             requiredFields.forEach(function (field) {
                 field.classList.remove("is-invalid");
                 field.removeAttribute("aria-invalid");
+            });
+        });
+    }
+
+    if (aboutTabs) {
+        var aboutTabButtons = Array.prototype.slice.call(aboutTabs.querySelectorAll("[data-about-tab]"));
+        var aboutTabPanels = Array.prototype.slice.call(aboutTabs.querySelectorAll("[data-about-panel]"));
+
+        aboutTabButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                var target = button.getAttribute("data-about-tab");
+
+                aboutTabButtons.forEach(function (tabButton) {
+                    var isActive = tabButton === button;
+                    tabButton.classList.toggle("is-active", isActive);
+                    tabButton.setAttribute("aria-selected", String(isActive));
+                });
+
+                aboutTabPanels.forEach(function (panel) {
+                    panel.classList.toggle("is-active", panel.getAttribute("data-about-panel") === target);
+                });
             });
         });
     }
