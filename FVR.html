@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="AngelTech Logistics services for strategic consulting, technology platforms, and managed logistics support.">
-    <title>Freight Audit, Verification and Reporting (FVR) - AngelTech Logistics</title>
+    <title>Transportation Management System (TMS) - AngelTech Logistics</title>
     <link rel="shortcut icon" href="assets/images/favicon.png">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/all.min.css">
@@ -21,7 +21,7 @@
                     <ul class="navbar-nav ms-auto align-items-lg-center">
                         <li class="nav-item"><a class="nav-link" href="index.html#top">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                        <li class="nav-item nav-dropdown"><button class="nav-link nav-dropdown-toggle active" type="button" aria-expanded="false">Our Products <i class="fa-solid fa-chevron-down"></i></button><ul class="nav-dropdown-menu"><li><a href="FVR.html">FVR</a></li><li><a href="e-RFQ.html">e-RFQ</a></li><li><a href="TMS.html">TMS</a></li><li><a href="controltower.html">Control Tower</a></li><li><a href="shipmentracking.html">Shipment Tracking</a></li></ul></li>
+                        <li class="nav-item nav-dropdown"><button class="nav-link nav-dropdown-toggle active" type="button" aria-expanded="false">Our Products <i class="fa-solid fa-chevron-down"></i></button><ul class="nav-dropdown-menu"><li><a href="FVR.html">FVR</a></li><li><a href="e-RFQ.html">e-RFQ</a></li><li><a href="TMS.html">TMS</a></li><li><a href="logisticcontroltower.html">Logistic Control Tower</a></li><li><a href="shipmentracking.html">Shipment Tracking</a></li></ul></li>
                         <li class="nav-item"><a class="nav-link" href="our-services.html">Our Services</a></li>
                         <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
                         <li class="nav-item nav-quote-item"><a class="nav-link nav-quote-link" href="contact.html#contact-form-section">Get a Quote <i class="fa-solid fa-arrow-right"></i></a></li>
@@ -107,60 +107,150 @@
         </section>
 
         <section class="fvr-challenges-section" aria-labelledby="fvr-challenges-title">
-            <div class="fvr-challenges-intro">
-                <div class="container">
-                    <div class="fvr-challenges-head">
-                        <div class="fvr-challenges-copy reveal">
-                            <span class="eyebrow"><i class="fa-solid fa-triangle-exclamation"></i> Challenges</span>
-                            <h2 id="fvr-challenges-title">Business Challenges in Freight Verification</h2>
-                            <span class="fvr-overview-line" aria-hidden="true"></span>
-                            <p>Managing freight invoices manually can lead to billing errors, delayed approvals, and increased transportation costs. Without intelligent Freight Verification Software, businesses often struggle to verify invoices, validate shipment data, ensure contract compliance, and monitor freight expenses efficiently.</p>
-                        </div>
-                        <div class="fvr-challenges-media reveal delay-1">
-                            <img src="assets/images/Products/logistic1.jpeg" alt="Freight transport and verification technology">
-                        </div>
+            <div class="container">
+                <div class="fvr-challenges-heading reveal">
+                    <span class="eyebrow"><i class="fa-solid fa-triangle-exclamation"></i> Challenges</span>
+                    <h2 id="fvr-challenges-title">Business Challenges in <span>Freight Verification</span></h2>
+                    <p>Managing freight invoices manually can lead to billing errors, delayed approvals, and increased transportation costs. Our Freight Verification Software solves these challenges with automation, accuracy, and real-time insights.</p>
+                </div>
+
+                <div class="fvr-challenges-board reveal delay-1">
+                    <div class="fvr-board-label fvr-board-label-left"><i class="fa-solid fa-triangle-exclamation"></i> Business Challenges</div>
+                    <div class="fvr-board-label fvr-board-label-right"><i class="fa-regular fa-circle-check"></i> How We Solve It</div>
+
+                    <div class="fvr-challenge-row">
+                        <article class="fvr-challenge-card">
+                            <span class="fvr-challenge-number">01</span>
+                            <span class="fvr-challenge-icon"><i class="fa-regular fa-file-lines"></i></span>
+                            <div><h3>Manual Freight Invoice Verification</h3><p>Time-consuming and prone to human errors.</p></div>
+                        </article>
+                        <span class="fvr-challenge-arrow"><i class="fa-solid fa-arrow-right-long"></i></span>
+                        <article class="fvr-solution-card">
+                            <span class="fvr-challenge-icon"><i class="fa-solid fa-file-invoice"></i></span>
+                            <div><h3>AI-Powered Invoice Automation</h3><p>Automatically extract, validate, and verify invoices with high accuracy.</p></div>
+                            <span class="fvr-solution-check"><i class="fa-solid fa-check"></i></span>
+                        </article>
+                    </div>
+
+                    <div class="fvr-challenge-row">
+                        <article class="fvr-challenge-card">
+                            <span class="fvr-challenge-number">02</span>
+                            <span class="fvr-challenge-icon"><i class="fa-solid fa-dollar-sign"></i></span>
+                            <div><h3>Incorrect Freight Charges</h3><p>Overbilling, pricing discrepancies, and unauthorized charges.</p></div>
+                        </article>
+                        <span class="fvr-challenge-arrow"><i class="fa-solid fa-arrow-right-long"></i></span>
+                        <article class="fvr-solution-card">
+                            <span class="fvr-challenge-icon"><i class="fa-solid fa-scale-balanced"></i></span>
+                            <div><h3>Smart Rate Validation</h3><p>Validate charges against contracts and rate tables to catch discrepancies.</p></div>
+                            <span class="fvr-solution-check"><i class="fa-solid fa-check"></i></span>
+                        </article>
+                    </div>
+
+                    <div class="fvr-challenge-row">
+                        <article class="fvr-challenge-card">
+                            <span class="fvr-challenge-number">03</span>
+                            <span class="fvr-challenge-icon"><i class="fa-regular fa-copy"></i></span>
+                            <div><h3>Duplicate Invoice Payments</h3><p>Increased financial losses due to duplicate billing.</p></div>
+                        </article>
+                        <span class="fvr-challenge-arrow"><i class="fa-solid fa-arrow-right-long"></i></span>
+                        <article class="fvr-solution-card">
+                            <span class="fvr-challenge-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></span>
+                            <div><h3>Duplicate Detection</h3><p>Automatically detect duplicate invoices and prevent double payments.</p></div>
+                            <span class="fvr-solution-check"><i class="fa-solid fa-check"></i></span>
+                        </article>
+                    </div>
+
+                    <div class="fvr-challenge-row">
+                        <article class="fvr-challenge-card">
+                            <span class="fvr-challenge-number">04</span>
+                            <span class="fvr-challenge-icon"><i class="fa-solid fa-file-shield"></i></span>
+                            <div><h3>Contract Compliance Issues</h3><p>Difficulty validating invoices against agreed freight rates.</p></div>
+                        </article>
+                        <span class="fvr-challenge-arrow"><i class="fa-solid fa-arrow-right-long"></i></span>
+                        <article class="fvr-solution-card">
+                            <span class="fvr-challenge-icon"><i class="fa-solid fa-list-check"></i></span>
+                            <div><h3>Contract Compliance Checks</h3><p>Ensure every invoice matches contract terms and business rules.</p></div>
+                            <span class="fvr-solution-check"><i class="fa-solid fa-check"></i></span>
+                        </article>
+                    </div>
+
+                    <div class="fvr-challenge-row">
+                        <article class="fvr-challenge-card">
+                            <span class="fvr-challenge-number">05</span>
+                            <span class="fvr-challenge-icon"><i class="fa-regular fa-clock"></i></span>
+                            <div><h3>Delayed Approval Workflows</h3><p>Slow invoice processing and payment approvals.</p></div>
+                        </article>
+                        <span class="fvr-challenge-arrow"><i class="fa-solid fa-arrow-right-long"></i></span>
+                        <article class="fvr-solution-card">
+                            <span class="fvr-challenge-icon"><i class="fa-solid fa-diagram-project"></i></span>
+                            <div><h3>Automated Approval Workflows</h3><p>Intelligent routing and automated approvals speed up the process.</p></div>
+                            <span class="fvr-solution-check"><i class="fa-solid fa-check"></i></span>
+                        </article>
+                    </div>
+
+                    <div class="fvr-challenge-row">
+                        <article class="fvr-challenge-card">
+                            <span class="fvr-challenge-number">06</span>
+                            <span class="fvr-challenge-icon"><i class="fa-solid fa-location-dot"></i></span>
+                            <div><h3>Limited Shipment Visibility</h3><p>Lack of real-time tracking and invoice status.</p></div>
+                        </article>
+                        <span class="fvr-challenge-arrow"><i class="fa-solid fa-arrow-right-long"></i></span>
+                        <article class="fvr-solution-card">
+                            <span class="fvr-challenge-icon"><i class="fa-solid fa-truck-fast"></i></span>
+                            <div><h3>Real-Time Shipment Visibility</h3><p>Track shipments and invoice status in real time on a unified dashboard.</p></div>
+                            <span class="fvr-solution-check"><i class="fa-solid fa-check"></i></span>
+                        </article>
+                    </div>
+
+                    <div class="fvr-challenge-row">
+                        <article class="fvr-challenge-card">
+                            <span class="fvr-challenge-number">07</span>
+                            <span class="fvr-challenge-icon"><i class="fa-solid fa-truck"></i></span>
+                            <div><h3>Poor Carrier Performance Monitoring</h3><p>Limited insights into carrier efficiency and freight costs.</p></div>
+                        </article>
+                        <span class="fvr-challenge-arrow"><i class="fa-solid fa-arrow-right-long"></i></span>
+                        <article class="fvr-solution-card">
+                            <span class="fvr-challenge-icon"><i class="fa-solid fa-chart-line"></i></span>
+                            <div><h3>Carrier Performance Analytics</h3><p>Monitor carrier performance with KPIs and data-driven insights.</p></div>
+                            <span class="fvr-solution-check"><i class="fa-solid fa-check"></i></span>
+                        </article>
+                    </div>
+
+                    <div class="fvr-challenge-row">
+                        <article class="fvr-challenge-card">
+                            <span class="fvr-challenge-number">08</span>
+                            <span class="fvr-challenge-icon"><i class="fa-regular fa-folder-open"></i></span>
+                            <div><h3>Scattered Freight Documents</h3><p>Invoices, PODs, and contracts stored across multiple systems.</p></div>
+                        </article>
+                        <span class="fvr-challenge-arrow"><i class="fa-solid fa-arrow-right-long"></i></span>
+                        <article class="fvr-solution-card">
+                            <span class="fvr-challenge-icon"><i class="fa-solid fa-cloud-arrow-up"></i></span>
+                            <div><h3>Centralized Document Management</h3><p>Store and manage all documents in one secure, accessible platform.</p></div>
+                            <span class="fvr-solution-check"><i class="fa-solid fa-check"></i></span>
+                        </article>
+                    </div>
+
+                    <div class="fvr-challenge-row">
+                        <article class="fvr-challenge-card">
+                            <span class="fvr-challenge-number">09</span>
+                            <span class="fvr-challenge-icon"><i class="fa-solid fa-chart-column"></i></span>
+                            <div><h3>Inaccurate Freight Cost Analysis</h3><p>Limited visibility into transportation spend and savings opportunities.</p></div>
+                        </article>
+                        <span class="fvr-challenge-arrow"><i class="fa-solid fa-arrow-right-long"></i></span>
+                        <article class="fvr-solution-card">
+                            <span class="fvr-challenge-icon"><i class="fa-solid fa-chart-pie"></i></span>
+                            <div><h3>Advanced Freight Cost Analytics</h3><p>Gain insights into spend, trends, and savings opportunities.</p></div>
+                            <span class="fvr-solution-check"><i class="fa-solid fa-check"></i></span>
+                        </article>
                     </div>
                 </div>
-            </div>
 
-            <div class="container">
-                <div class="fvr-challenges-grid">
-                    <article class="fvr-challenge-card reveal">
-                        <span><i class="fa-regular fa-file-lines"></i></span>
-                        <div><h3>1. Manual Freight Invoice Verification</h3><p>Time-consuming and prone to human errors.</p></div>
-                    </article>
-                    <article class="fvr-challenge-card reveal delay-1">
-                        <span><i class="fa-solid fa-dollar-sign"></i></span>
-                        <div><h3>2. Incorrect Freight Charges</h3><p>Overbilling, pricing discrepancies, and unauthorized charges.</p></div>
-                    </article>
-                    <article class="fvr-challenge-card reveal delay-2">
-                        <span><i class="fa-regular fa-copy"></i></span>
-                        <div><h3>3. Duplicate Invoice Payments</h3><p>Increased financial losses due to duplicate billing.</p></div>
-                    </article>
-                    <article class="fvr-challenge-card reveal">
-                        <span><i class="fa-solid fa-file-shield"></i></span>
-                        <div><h3>4. Contract Compliance Issues</h3><p>Difficulty validating invoices against agreed freight rates.</p></div>
-                    </article>
-                    <article class="fvr-challenge-card reveal delay-1">
-                        <span><i class="fa-regular fa-clock"></i></span>
-                        <div><h3>5. Delayed Approval Workflows</h3><p>Slow invoice processing and payment approvals.</p></div>
-                    </article>
-                    <article class="fvr-challenge-card reveal delay-2">
-                        <span><i class="fa-solid fa-location-dot"></i></span>
-                        <div><h3>6. Limited Shipment Visibility</h3><p>Lack of real-time tracking and invoice status.</p></div>
-                    </article>
-                    <article class="fvr-challenge-card reveal">
-                        <span><i class="fa-solid fa-truck"></i></span>
-                        <div><h3>7. Poor Carrier Performance Monitoring</h3><p>Limited insights into carrier efficiency and freight costs.</p></div>
-                    </article>
-                    <article class="fvr-challenge-card reveal delay-1">
-                        <span><i class="fa-regular fa-folder-open"></i></span>
-                        <div><h3>8. Scattered Freight Documents</h3><p>Invoices, PODs, and contracts stored across multiple systems.</p></div>
-                    </article>
-                    <article class="fvr-challenge-card reveal delay-2">
-                        <span><i class="fa-solid fa-chart-column"></i></span>
-                        <div><h3>9. Inaccurate Freight Cost Analysis</h3><p>Limited visibility into transportation spend and savings opportunities.</p></div>
-                    </article>
+                <div class="fvr-challenges-benefits reveal delay-2">
+                    <div><i class="fa-solid fa-indian-rupee-sign"></i><strong>Reduce Costs</strong><span>Eliminate overcharges and save more</span></div>
+                    <div><i class="fa-solid fa-bullseye"></i><strong>Improve Accuracy</strong><span>Minimize errors with AI automation</span></div>
+                    <div><i class="fa-regular fa-clock"></i><strong>Save Time</strong><span>Faster processing and approvals</span></div>
+                    <div><i class="fa-solid fa-shield-halved"></i><strong>Ensure Compliance</strong><span>Stay aligned with contracts and policies</span></div>
+                    <div><i class="fa-solid fa-chart-line"></i><strong>Drive Insights</strong><span>Make smarter decisions with live data</span></div>
                 </div>
             </div>
         </section>

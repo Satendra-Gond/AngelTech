@@ -15,6 +15,7 @@
     var heroSlider = document.querySelector("[data-hero-slider]");
     var aboutTabs = document.querySelector("[data-about-tabs]");
     var statCounters = document.querySelectorAll("[data-count]");
+    var fvrChallengeRows = document.querySelectorAll(".fvr-challenge-row");
 
     function updateChrome() {
         var scrolled = window.scrollY > 24;
@@ -127,12 +128,34 @@
                 counterObserver.observe(counter);
             });
         }
+
+        if (fvrChallengeRows.length) {
+            var challengeRowObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-active");
+                        window.setTimeout(function () {
+                            entry.target.classList.add("is-solved");
+                        }, 720);
+                        challengeRowObserver.unobserve(entry.target);
+                    }
+                });
+            }, { rootMargin: "0px 0px -12% 0px", threshold: 0.38 });
+
+            fvrChallengeRows.forEach(function (row) {
+                challengeRowObserver.observe(row);
+            });
+        }
     } else {
         revealItems.forEach(function (item) {
             item.classList.add("is-visible");
         });
         statCounters.forEach(function (counter) {
             counter.textContent = counter.getAttribute("data-count");
+        });
+        fvrChallengeRows.forEach(function (row) {
+            row.classList.add("is-active");
+            row.classList.add("is-solved");
         });
     }
 
