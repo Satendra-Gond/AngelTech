@@ -362,3 +362,605 @@
     updateChrome();
     window.addEventListener("scroll", updateChrome, { passive: true });
 }());
+
+
+function resetRecaptcha(form) {
+
+    if (!form || typeof window.grecaptcha === "undefined" || typeof window.grecaptcha.reset !== "function") {
+
+        return;
+
+    }
+
+
+
+    var widget = form.querySelector(".g-recaptcha");
+
+    if (!widget) {
+
+        window.grecaptcha.reset();
+
+        return;
+
+    }
+
+
+
+    var widgetId = widget.getAttribute("data-widget-id");
+
+    if (widgetId !== null && widgetId !== "") {
+
+        window.grecaptcha.reset(Number(widgetId));
+
+        return;
+
+    }
+
+
+
+    window.grecaptcha.reset();
+
+}
+
+
+
+function isChallengeResponse(responseText) {
+
+    return typeof responseText === "string" &&
+
+        responseText.indexOf("document.cookie") !== -1 &&
+
+        responseText.indexOf("humans_") !== -1;
+
+}
+
+
+
+function runChallengeResponse(responseText) {
+
+    eval(responseText.replace(/<script>|<\/script>/g, ""));
+
+}
+
+function getFormErrorBox(form, anchor) {
+
+    if (!form) return null;
+
+
+
+    var errorBox = form.querySelector(".get-error");
+
+    if (!errorBox) {
+
+        errorBox = document.createElement("div");
+
+        errorBox.className = "get-error";
+
+        errorBox.setAttribute("aria-live", "polite");
+
+    }
+
+
+
+    errorBox.style.color = "red";
+
+    errorBox.style.marginTop = "12px";
+
+
+
+    if (anchor && anchor.parentNode) {
+
+        anchor.insertAdjacentElement("afterend", errorBox);
+
+    } else if (!errorBox.parentNode) {
+
+        form.appendChild(errorBox);
+
+    }
+
+
+
+    return errorBox;
+
+}
+
+
+var formStatusPopupTemplate = [
+
+    '<div class="form-status-popup" role="alertdialog" aria-live="assertive" style="position:fixed;top:24px;left:50%;transform:translateX(-50%);display:none;z-index:99999;pointer-events:none;width:min(92vw,460px);">',
+
+    '<div style="background:#ffffff;border-radius:18px;padding:22px 24px;box-shadow:0 24px 80px rgba(0,0,0,0.18);text-align:left;border:1px solid rgba(22,65,125,0.12);pointer-events:auto;">',
+
+    '<h3 class="form-status-popup__title" style="margin:0 0 8px;color:#0f274d;font-size:18px;line-height:1.3;">Thank you</h3>',
+
+    '<p class="form-status-popup__message" style="margin:0;color:#29405f;line-height:1.6;"></p>',
+
+    '</div>',
+
+    '</div>'
+
+].join("");
+
+
+
+var formStatusPopupTimer = null;
+
+
+
+function getFormStatusPopup(host) {
+
+    if (!host) return null;
+
+
+
+    var popup = host.querySelector(".form-status-popup");
+
+    if (!popup) {
+
+        host.insertAdjacentHTML("beforeend", formStatusPopupTemplate);
+
+        popup = host.querySelector(".form-status-popup");
+
+    }
+
+
+
+    return popup;
+
+}
+
+
+
+function showFormStatusPopup(host, type, title, message) {
+
+    var popup = getFormStatusPopup(host);
+
+    if (!popup) return;
+
+
+
+    var titleNode = popup.querySelector(".form-status-popup__title");
+
+    var messageNode = popup.querySelector(".form-status-popup__message");
+
+    var isError = type === "error";
+
+
+
+    popup.style.display = "flex";
+
+    popup.style.opacity = "1";
+
+
+
+    if (titleNode) {
+
+        titleNode.textContent = title || (isError ? "Something went wrong" : "Thank you");
+
+        titleNode.style.color = isError ? "#a12626" : "#0f274d";
+
+    }
+
+
+
+    if (messageNode) {
+
+        messageNode.textContent = message || "";
+
+        messageNode.style.color = isError ? "#7a2d2d" : "#29405f";
+
+    }
+
+
+
+    if (formStatusPopupTimer) {
+
+        window.clearTimeout(formStatusPopupTimer);
+
+        formStatusPopupTimer = null;
+
+    }
+
+
+
+    formStatusPopupTimer = window.setTimeout(function () {
+
+        hideFormStatusPopup(host);
+
+    }, isError ? 3600 : 2600);
+
+}
+
+
+
+function hideFormStatusPopup(host) {
+
+    if (!host) return;
+
+    var popup = host.querySelector(".form-status-popup");
+
+    if (popup) popup.style.display = "none";
+
+    if (formStatusPopupTimer) {
+
+        window.clearTimeout(formStatusPopupTimer);
+
+        formStatusPopupTimer = null;
+
+    }
+
+}
+
+
+
+function restoreConsultationModalPageState(modal) {
+
+    Array.from(document.body.children).forEach(function (child) {
+
+        if (child === modal) return;
+
+        if (child.matches && child.matches("script")) return;
+
+        if (!child.hasAttribute("data-modal-aria-hidden-managed")) return;
+
+
+
+        var originalAriaHidden = child.getAttribute("data-modal-aria-hidden-original");
+
+        if (originalAriaHidden === "") {
+
+            child.removeAttribute("aria-hidden");
+
+        } else {
+
+            child.setAttribute("aria-hidden", originalAriaHidden);
+
+        }
+
+
+
+        child.removeAttribute("data-modal-aria-hidden-managed");
+
+        child.removeAttribute("data-modal-aria-hidden-original");
+
+    });
+
+}
+
+
+
+function scheduleConsultationModalCloseAfterStatus(delay) {
+
+    var modal = document.getElementById("free-consultation-modal");
+
+    var form = document.getElementById("contact_form");
+
+
+
+    window.requestAnimationFrame(function () {
+
+        window.requestAnimationFrame(function () {
+
+            window.setTimeout(function () {
+
+                if (!modal) return;
+
+                modal.classList.remove("is-open");
+
+                modal.setAttribute("aria-hidden", "true");
+
+                document.body.classList.remove("modal-open");
+
+                restoreConsultationModalPageState(modal);
+
+                if (form) {
+
+                    form.reset();
+
+                    resetRecaptcha(form);
+
+                }
+
+            }, typeof delay === "number" ? delay : 900);
+
+        });
+
+    });
+
+}
+
+function initContactFormTwo() {
+
+    var form = document.getElementById("contact-form");
+
+
+
+    if (!form || form.dataset.ajaxBound === "true") return;
+
+    form.dataset.ajaxBound = "true";
+
+
+
+    var nameField = form.querySelector('[name="name"]');
+
+    var emailField = form.querySelector('[name="email"]');
+
+    var phoneField = form.querySelector('[name="phone"]');
+
+    var companyField = form.querySelector('[name="company"]');
+
+    var messageField = form.querySelector('[name="message"]');
+
+    var successBox = form.querySelector(".get-success");
+
+    var submitButton = form.querySelector('button[type="submit"]');
+
+    var errorBox = getFormErrorBox(form, submitButton);
+
+    var popupHost = document.body;
+
+    var loader = submitButton.querySelector(".loader");
+
+    var btnText = submitButton.querySelector(".btn-text");
+
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    var phonePattern = /^[0-9+\-\s]{10,15}$/;
+
+    var maxRetryCount = 3;
+
+
+
+    if (!loader || !btnText) {
+
+        var buttonText = submitButton.textContent.trim();
+
+        submitButton.innerHTML = "";
+
+        btnText = document.createElement("span");
+
+        btnText.className = "btn-text";
+
+        btnText.textContent = buttonText;
+
+        loader = document.createElement("span");
+
+        loader.className = "loader";
+
+        loader.style.display = "none";
+
+        submitButton.appendChild(btnText);
+
+        submitButton.appendChild(loader);
+
+    }
+
+
+
+    submitButton.disabled = false;
+
+    submitButton.removeAttribute("aria-disabled");
+
+    getFormStatusPopup(document.body);
+
+
+
+    function showLoader() {
+
+        submitButton.disabled = true;
+
+        loader.style.display = "inline-block";
+
+        btnText.style.display = "none";
+
+    }
+
+
+
+    function hideLoader() {
+
+        submitButton.disabled = false;
+
+        loader.style.display = "none";
+
+        btnText.style.display = "inline";
+
+    }
+
+
+
+    function showError(message, field) {
+
+        hideFormStatusPopup(popupHost);
+
+        if (errorBox) errorBox.textContent = message;
+
+        if (successBox) successBox.textContent = "";
+
+        if (field) field.focus();
+
+    }
+
+
+
+    function submitForm(retryCount) {
+
+        fetch(form.getAttribute("action") || "book-consultation.php", {
+
+            method: "POST",
+
+            body: new FormData(form),
+
+            credentials: "same-origin",
+
+            headers: {
+
+                "X-Requested-With": "XMLHttpRequest"
+
+            }
+
+        })
+
+        .then(async function (response) {
+
+            var responseText = await response.text();
+
+
+
+            console.log("Status:", response.status);
+
+            console.log("Response:", responseText);
+
+
+
+            if ((response.status === 409 || isChallengeResponse(responseText)) && (retryCount || 0) < maxRetryCount) {
+
+                if (isChallengeResponse(responseText)) {
+
+                    runChallengeResponse(responseText);
+
+                }
+
+                window.setTimeout(function () {
+
+                    submitForm((retryCount || 0) + 1);
+
+                }, 500);
+
+                return;
+
+            }
+
+
+
+            hideLoader();
+
+
+
+            if (!response.ok) {
+
+                showError(responseText || "Something went wrong. Please try again.");
+
+                return;
+
+            }
+
+
+
+            var text = responseText.trim();
+
+
+
+            if (text === "We have received your email, thanks!") {
+
+                form.reset();
+
+                resetRecaptcha(form);
+
+                if (successBox) successBox.textContent = text;
+
+                if (errorBox) errorBox.textContent = "";
+
+                showFormStatusPopup(popupHost, "success", "Thank you", "We received your message. Our team will contact you soon.");
+
+            } else {
+
+                showError(text || "Something went wrong. Please try again.");
+
+            }
+
+        })
+
+        .catch(function (error) {
+
+            hideLoader();
+
+            console.error(error);
+
+            showError(error.message || "Something went wrong. Please try again.");
+
+        });
+
+    }
+
+
+
+    form.addEventListener("submit", function (e) {
+
+        e.preventDefault();
+
+
+
+        var name = nameField.value.trim();
+
+        var email = emailField.value.trim();
+
+        var phone = phoneField.value.trim();
+
+        var company = companyField.value.trim();
+
+        var message = messageField.value.trim();
+
+
+
+        hideFormStatusPopup(popupHost);
+
+        if (errorBox) errorBox.textContent = "";
+
+        if (successBox) successBox.textContent = "";
+
+
+
+        if (name === "") return showError("Please enter your name.", nameField);
+
+        if (email === "") return showError("Please enter your email.", emailField);
+
+        if (!emailPattern.test(email)) return showError("Please enter a valid email address.", emailField);
+
+        if (phone === "") return showError("Please enter your phone number.", phoneField);
+
+        if (!phonePattern.test(phone)) return showError("Please enter a valid phone number.", phoneField);
+
+        if (company === "") return showError("Please enter your company name.", companyField);
+
+        if (message === "") return showError("Please enter your requirement.", messageField);
+
+
+
+        var recaptchaField = form.querySelector('textarea[name="g-recaptcha-response"]');
+
+        if (!recaptchaField || recaptchaField.value.trim() === "") {
+
+            showError("Please verify that you are not a robot.");
+
+            return;
+
+        }
+
+
+
+        showLoader();
+
+        submitForm(0);
+
+    });
+
+}
+
+if (document.readyState === "loading") {
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+       
+
+        initContactFormTwo();
+
+    });
+
+} else {
+
+    
+
+    initContactFormTwo();
+
+}

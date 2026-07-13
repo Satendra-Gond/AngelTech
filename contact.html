@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/all.min.css">
     <link rel="stylesheet" href="assets/css/angeltech.css">
+     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
     <header class="site-header" id="top">
@@ -116,34 +117,41 @@
                     </div>
 
                     <div class="contact-form-panel">
-                        <form class="contact-form" action="#" novalidate>
-                            <div class="form-row">
-                                <label>
-                                    <span>Full Name*</span>
-                                    <input type="text" name="full-name" required>
-                                </label>
-                                <label>
-                                    <span>Company Name*</span>
-                                    <input type="text" name="company-name" required>
-                                </label>
-                            </div>
-                            <div class="form-row">
-                                <label>
-                                    <span>Email*</span>
-                                    <input type="email" name="email" required>
-                                </label>
-                                <label>
-                                    <span>Phone*</span>
-                                    <input type="tel" name="phone" inputmode="tel" required>
-                                </label>
-                            </div>
-                            <label class="message-field">
-                                <span>Your Message</span>
-                                <textarea name="message" rows="3"></textarea>
+                         <form class="contact-form" enctype="multipart/form-data"  id="contact-form"
+
+    method="post"
+
+    action="book-consultation.php"
+ novalidate>
+                        <div class="form-row">
+                            <label>
+                                <span>Full Name*</span>
+                                <input type="text" name="name" placeholder="Full Name*" required>
                             </label>
-                            <p class="contact-form-message" aria-live="polite"></p>
-                            <button class="btn-primary-angel" type="submit">Send Message <i class="fa-solid fa-arrow-right"></i></button>
-                        </form>
+                            <label>
+                                <span>Company Name*</span>
+                                <input type="text" name="company" placeholder="Company Name" required>
+                            </label>
+                        </div>
+                        <div class="form-row">
+                            <label>
+                                <span>Email*</span>
+                                <input type="email" name="email" placeholder="Email" required>
+                            </label>
+                            <label>
+                                <span>Phone*</span>
+                                <input type="tel" name="phone" inputmode="tel" placeholder="Phone Number" required>
+                            </label>
+                        </div>
+                        <label class="message-field">
+                            <span>Your Message</span>
+                            <textarea name="message" rows="3" placeholder="Your Message"></textarea>
+                        </label>
+                        <div class="g-recaptcha" data-sitekey="6Le1zT0tAAAAAHbg0SdsMu-2vT11S4-TkB3VW1lS"></div>
+                        <button class="btn btn-primary-angel submit-btn" type="submit">Send Message <i class="fa-solid fa-arrow-right"></i></button>
+                        
+        <p class="form-status" role="status" aria-live="polite"></p>
+                    </form>
                     </div>
                 </div>
             </div>
