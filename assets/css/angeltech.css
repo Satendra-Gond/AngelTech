@@ -277,7 +277,7 @@ a {
 }
 
 .hero-copy {
-    max-width: 640px;
+    max-width: 90%;
     color: var(--angel-white);
     position: relative;
     z-index: 2;
@@ -1207,7 +1207,7 @@ h3 {
     inset: 0;
     background:
         linear-gradient(rgba(11, 21, 32, 0.86), rgba(11, 21, 32, 0.92)),
-        url("../images/tracking-bg.jpg") center / cover;
+        url("../images/footer.png") center / cover;
 }
 
 .products-section .container {
@@ -1268,7 +1268,7 @@ h3 {
     color: var(--angel-white);
     background:
         linear-gradient(rgba(7, 21, 35, 0.86), rgba(7, 21, 35, 0.9)),
-        url("../images/tracking-bg.jpg") center / cover no-repeat;
+        url("../images/footer1.png") center / cover no-repeat;
 }
 
 .product-showcase-copy {
@@ -3437,14 +3437,19 @@ h3 {
             linear-gradient(160deg, #071523 0%, #0b2740 100%);
     }
 
+    .hero-section > .container {
+        order: 1;
+    }
+
     .hero-visual {
+        order: 2;
         position: relative;
         top: auto;
         right: auto;
         bottom: auto;
         width: calc(100% - 48px);
         min-height: 420px;
-        margin: 0 auto 40px;
+        margin: 40px auto 0;
     }
 
     .hero-slider {
@@ -3482,6 +3487,14 @@ h3 {
         padding: 76px 0;
     }
 
+    .about-band .row > .col-lg-7 {
+        order: 1;
+    }
+
+    .about-band .row > .col-lg-5 {
+        order: 2;
+    }
+
     .process-crates {
         width: 155px;
         opacity: 0.55;
@@ -3494,12 +3507,7 @@ h3 {
     }
 
     .process-timeline::before {
-        top: 0;
-        bottom: 0;
-        left: 22px;
-        right: auto;
-        border-top: 0;
-        border-left: 1px dashed var(--angel-line);
+        display: none;
     }
 
     .process-step {
@@ -3549,6 +3557,14 @@ h3 {
     .choose-media {
         min-height: 430px;
         margin: 0 auto;
+    }
+
+    .choose-section .row > .col-lg-6:nth-child(2) {
+        order: 1;
+    }
+
+    .choose-section .row > .col-lg-6:nth-child(1) {
+        order: 2;
     }
 
     .product-showcase-row,
@@ -3686,6 +3702,11 @@ h3 {
         display: none;
     }
 
+    .hero-copy {
+        max-width: 100%;
+        text-align: center;
+    }
+
     .hero-copy h1 {
         font-size: 40px;
     }
@@ -3782,34 +3803,29 @@ h3 {
     }
 
     .process-step {
-        grid-template-columns: 48px 92px minmax(0, 1fr);
-        gap: 14px;
+        display: block;
+        text-align: center;
     }
 
     .process-image {
-        grid-column: 2;
-        grid-row: 1 / span 2;
         width: 92px;
         height: 92px;
+        margin: 0 auto 18px;
     }
 
     .process-step h3 {
-        grid-column: 3;
-        grid-row: 1;
-        align-self: end;
+        margin: 0 auto 10px;
         font-size: 16px;
     }
 
     .process-step p {
-        grid-column: 3;
-        grid-row: 2;
-        align-self: start;
+        max-width: 260px;
+        margin: 0 auto;
         font-size: 13px;
     }
 
     .process-number {
-        grid-column: 1;
-        grid-row: 1 / span 2;
+        margin: 0 auto 18px;
     }
 
     .product-item {
@@ -4511,9 +4527,9 @@ h3 {
 .fvr-overview-media img {
     display: block;
     width: 100%;
-    min-height: 620px;
+    min-height: 600px;
     /* aspect-ratio: 0.76 / 1; */
-    object-fit: cover;
+    /* object-fit: cover; */
 }
 
 .fvr-overview-content {
@@ -4565,9 +4581,13 @@ h3 {
     margin-top: 34px;
 }
 
+.fvr-overview-actions.is-centered {
+    /* justify-content: center; */
+}
+
 .fvr-overview-actions a {
-    min-width: 210px;
-    min-height: 54px;
+    min-width: 345px;
+    min-height: 60px;
 }
 
 .fvr-outline-button {
@@ -4599,7 +4619,12 @@ h3 {
         gap: 44px;
     }
 
+    .fvr-overview-content {
+        order: 1;
+    }
+
     .fvr-overview-media {
+        order: 2;
         width: 100%;
         max-width: 680px;
         margin: 0 auto;
@@ -7021,6 +7046,7 @@ h3 {
     .tms-process-wave {
         grid-template-columns: 1fr;
         gap: 16px;
+        justify-items: center;
     }
 
     .fvr-workflow-card {
@@ -7028,7 +7054,19 @@ h3 {
     }
 
     .tms-process-card {
+        width: min(100%, 340px);
         min-height: 0;
+        text-align: center;
+    }
+
+    .tms-process-icon {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .tms-process-card .fvr-card-line {
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .fvr-workflow-benefits {
@@ -8000,8 +8038,16 @@ h3 {
         height: 44px;
     }
 
+    .fvr-faq-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
     .fvr-faq-actions a {
-        width: 100%;
+        width: min(100%, 260px);
+        min-width: 0;
+        text-align: center;
+        line-height: 1.25;
     }
 
     .fvr-faq-item summary {

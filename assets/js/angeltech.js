@@ -16,6 +16,7 @@
     var aboutTabs = document.querySelector("[data-about-tabs]");
     var statCounters = document.querySelectorAll("[data-count]");
     var fvrChallengeRows = document.querySelectorAll(".fvr-challenge-row");
+    var faqLists = document.querySelectorAll(".fvr-faq-list");
 
     function updateChrome() {
         var scrolled = window.scrollY > 24;
@@ -99,6 +100,24 @@
             });
         });
     }
+
+    faqLists.forEach(function (faqList) {
+        var faqItems = faqList.querySelectorAll(".fvr-faq-item");
+
+        faqItems.forEach(function (item) {
+            item.addEventListener("toggle", function () {
+                if (!item.open) {
+                    return;
+                }
+
+                faqItems.forEach(function (otherItem) {
+                    if (otherItem !== item) {
+                        otherItem.removeAttribute("open");
+                    }
+                });
+            });
+        });
+    });
 
     if ("IntersectionObserver" in window) {
         var observer = new IntersectionObserver(function (entries) {
