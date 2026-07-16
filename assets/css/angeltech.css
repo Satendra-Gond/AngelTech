@@ -39,6 +39,8 @@
 
 html {
     scroll-behavior: smooth;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 body {
@@ -1207,7 +1209,7 @@ h3 {
     inset: 0;
     background:
         linear-gradient(rgba(11, 21, 32, 0.86), rgba(11, 21, 32, 0.92)),
-        url("../images/footer.png") center / cover;
+        url("../images/footer.webp") center / cover;
 }
 
 .products-section .container {
@@ -1268,7 +1270,7 @@ h3 {
     color: var(--angel-white);
     background:
         linear-gradient(rgba(7, 21, 35, 0.86), rgba(7, 21, 35, 0.9)),
-        url("../images/footer1.png") center / cover no-repeat;
+        url("../images/footer1.webp") center / cover no-repeat;
 }
 
 .product-showcase-copy {
@@ -1379,8 +1381,6 @@ h3 {
     color: var(--angel-ink);
     font-weight: 800;
 }
-
-
 
 .product-discover-link {
     display: inline-flex;
@@ -1913,13 +1913,11 @@ h3 {
 .services-card-media {
     position: relative;
     height: 86px;
-    display: grid;
-    grid-template-columns: 72px minmax(0, 1fr);
-    align-items: stretch;
+    display: block;
     margin-bottom: 28px;
     border-radius: 8px 34px 8px 8px;
     overflow: hidden;
-    background: #00bce7;
+    background: transparent;
 }
 
 .services-card-media span {
@@ -2944,7 +2942,7 @@ h3 {
 .site-footer {
     position: relative;
     color: rgba(255, 255, 255, 0.74);
-    background: #070b10 url("../images/footer-bg.jpg") center / cover no-repeat;
+    background: #070b10 url("../images/footer-bg.webp") center / cover no-repeat;
 }
 
 .footer-overlay {
@@ -2956,7 +2954,7 @@ h3 {
 .footer-main {
     position: relative;
     z-index: 1;
-    padding: 56px 0 58px;
+    /* padding: 56px 0 58px; */
 }
 
 .footer-newsletter {
@@ -3681,6 +3679,12 @@ h3 {
 }
 
 @media (max-width: 767.98px) {
+    main,
+    section {
+        max-width: 100%;
+        overflow-x: clip;
+    }
+
     .navbar-brand img {
         width: 178px;
     }
@@ -3700,15 +3704,37 @@ h3 {
     }
 
     .hero-copy h1 {
-        font-size: 40px;
+        font-size: 30px;
+        line-height: 1.14;
+    }
+
+    .hero-copy .eyebrow {
+        max-width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        white-space: normal;
+        line-height: 1.35;
+        font-size: 12px;
+    }
+
+    .hero-copy .eyebrow::before,
+    .hero-lede-line {
+        display: none;
+    }
+
+    .hero-lede {
+        justify-content: center;
     }
 
     .hero-lede p {
+        max-width: 100%;
         font-size: 16px;
     }
 
     .hero-visual {
+        width: min(100% - 30px, 520px);
         min-height: 390px;
+        margin-top: 32px;
     }
 
     .hero-slider {
@@ -3764,6 +3790,100 @@ h3 {
 
     .feature-grid {
         grid-template-columns: 1fr;
+    }
+
+    .section-heading,
+    .section-copy,
+    .process-heading,
+    .choose-content,
+    .product-showcase-copy,
+    .testimonial-content,
+    .services-page-heading,
+    .about-overview-copy,
+    .company-focus-content,
+    .support-team-heading,
+    .contact-info-heading,
+    .hall-fame-heading,
+    .fvr-overview-content,
+    .fvr-challenges-heading,
+    .fvr-image-showcase-heading,
+    .erfq-ai-intelligence-heading,
+    .tms-integrations-copy,
+    .fvr-capabilities-heading,
+    .fvr-workflow-heading,
+    .shipment-advantage-heading,
+    .fvr-features-copy,
+    .fvr-why-content,
+    .fvr-faq-list,
+    .fvr-faq-cta {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .section-heading .eyebrow,
+    .section-copy .eyebrow,
+    .process-heading .eyebrow,
+    .choose-content .eyebrow,
+    .product-showcase-copy .eyebrow,
+    .testimonial-content .eyebrow,
+    .services-page-heading .eyebrow,
+    .about-overview-copy .eyebrow,
+    .company-focus-content .eyebrow,
+    .support-team-heading .eyebrow,
+    .contact-info-heading .eyebrow,
+    .hall-fame-heading .eyebrow,
+    .fvr-overview-content .eyebrow,
+    .fvr-challenges-heading .eyebrow,
+    .fvr-image-showcase-heading .eyebrow,
+    .erfq-ai-intelligence-heading .eyebrow,
+    .tms-integrations-copy .eyebrow,
+    .fvr-capabilities-heading .eyebrow,
+    .fvr-workflow-heading .eyebrow,
+    .shipment-advantage-heading .eyebrow,
+    .fvr-features-copy .eyebrow,
+    .fvr-faq-list > .eyebrow,
+    .fvr-faq-cta .eyebrow {
+        flex-wrap: wrap;
+        justify-content: center;
+        white-space: normal;
+        line-height: 1.35;
+    }
+
+    .eyebrow::before,
+    .support-team-heading .eyebrow::after,
+    .fvr-overview-line,
+    .fvr-card-line,
+    .fvr-title-line {
+        display: none;
+    }
+
+    .section-copy h2,
+    .section-heading h2,
+    .services-page-heading h2,
+    .contact-info-heading h2,
+    .about-overview-copy h2,
+    .company-focus-content h2,
+    .support-team-heading h2,
+    .hall-fame-heading h2,
+    .product-showcase-copy h2,
+    .choose-content h2,
+    .fvr-overview-content h2,
+    .fvr-challenges-heading h2,
+    .fvr-image-showcase-heading h2,
+    .erfq-ai-intelligence-heading h2,
+    .tms-integrations-copy h2,
+    .fvr-capabilities-heading h2,
+    .fvr-workflow-heading h2,
+    .shipment-advantage-heading h2,
+    .fvr-features-copy h2,
+    .fvr-why-content h2,
+    .fvr-faq-list > h2,
+    .fvr-faq-cta h2 {
+        font-size: 30px;
+        line-height: 1.18;
+        max-width: 100%;
+        overflow-wrap: break-word;
     }
 
     .choose-media {
@@ -3897,7 +4017,14 @@ h3 {
     }
 
     .page-banner-copy {
-        padding-left: 18px;
+        max-width: 100%;
+        padding-left: 0;
+        border-left: 0;
+        text-align: center;
+    }
+
+    .page-breadcrumb {
+        justify-content: center;
     }
 
     .contact-info-heading {
@@ -3950,13 +4077,53 @@ h3 {
         width: 100%;
     }
 
+    .hero-actions {
+        max-width: 340px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-copy h1 {
+        font-size: 27px;
+    }
+
+    .hero-lede p {
+        font-size: 15px;
+        line-height: 1.65;
+    }
+
     .page-banner {
         min-height: 310px;
         padding: 112px 0 48px;
     }
 
     .page-banner-copy h1 {
-        font-size: 38px;
+        font-size: 34px;
+    }
+
+    .section-copy h2,
+    .section-heading h2,
+    .services-page-heading h2,
+    .contact-info-heading h2,
+    .about-overview-copy h2,
+    .company-focus-content h2,
+    .support-team-heading h2,
+    .hall-fame-heading h2,
+    .product-showcase-copy h2,
+    .choose-content h2,
+    .fvr-overview-content h2,
+    .fvr-challenges-heading h2,
+    .fvr-image-showcase-heading h2,
+    .erfq-ai-intelligence-heading h2,
+    .tms-integrations-copy h2,
+    .fvr-capabilities-heading h2,
+    .fvr-workflow-heading h2,
+    .shipment-advantage-heading h2,
+    .fvr-features-copy h2,
+    .fvr-why-content h2,
+    .fvr-faq-list > h2,
+    .fvr-faq-cta h2 {
+        font-size: 25px;
     }
 
     .contact-info-section {
@@ -3980,7 +4147,6 @@ h3 {
     }
 
     .services-card-media {
-        grid-template-columns: 62px minmax(0, 1fr);
         height: 76px;
     }
 
@@ -4221,7 +4387,7 @@ h3 {
     }
 
     .footer-main {
-        padding: 58px 0 42px;
+        /* padding: 58px 0 42px; */
     }
 }
 /* FVR product banner */
@@ -4519,7 +4685,7 @@ h3 {
 .fvr-overview-media img {
     display: block;
     width: 100%;
-    min-height: 600px;
+    /* min-height: 600px; */
     /* aspect-ratio: 0.76 / 1; */
     /* object-fit: cover; */
 }
@@ -4638,7 +4804,7 @@ h3 {
     }
 
     .fvr-overview-media img {
-        aspect-ratio: 0.9 / 1;
+        /* aspect-ratio: 0.9 / 1; */
     }
 
     .fvr-overview-content h2 {
@@ -5043,46 +5209,130 @@ h3 {
     }
 
     .fvr-challenges-board {
-        padding: 18px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0;
+        padding: 12px;
         border-radius: 10px;
+        background: var(--angel-white);
+    }
+
+    .fvr-board-label {
+        min-height: 0;
+        padding: 10px 12px;
+        border-radius: 8px 8px 0 0;
+        font-size: 11px;
+        line-height: 1.25;
+        letter-spacing: 0;
+    }
+
+    .fvr-board-label-left {
+        border-radius: 8px 0 0 8px;
+    }
+
+    .fvr-board-label-right {
+        margin-top: 0;
+        border-radius: 0 8px 8px 0;
+    }
+
+    .fvr-challenge-row {
+        position: relative;
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        margin-top: 14px;
+        border: 1px solid rgba(4, 125, 196, 0.16);
+        border-radius: 10px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 12px 28px rgba(11, 39, 64, 0.07);
+    }
+
+    .fvr-challenge-row:first-of-type {
+        margin-top: 16px;
     }
 
     .fvr-challenge-card,
+    .fvr-solution-card,
+    .fvr-challenge-row.is-active .fvr-challenge-card,
+    .fvr-challenge-row.is-solved .fvr-challenge-card,
+    .fvr-challenge-row.is-solved .fvr-solution-card {
+        grid-template-columns: 1fr;
+        align-content: start;
+        gap: 10px;
+        min-height: 0;
+        height: 100%;
+        padding: 14px 12px;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .fvr-challenge-card {
+        border-right: 1px solid var(--angel-line);
+        background: linear-gradient(180deg, #ffffff, #f8fbfd);
+    }
+
     .fvr-solution-card {
-        grid-template-columns: 44px minmax(0, 1fr);
+        background: linear-gradient(180deg, #f1fbff, #ffffff);
+    }
+
+    .fvr-challenge-card::before,
+    .fvr-solution-card::before {
+        display: block;
+        color: var(--angel-blue);
+        font-size: 10px;
+        line-height: 1.2;
+        font-weight: 900;
+        text-transform: uppercase;
+    }
+
+    .fvr-challenge-card::before {
+        content: "Challenge";
+    }
+
+    .fvr-solution-card::before {
+        content: "Solution";
+    }
+
+    .fvr-challenge-arrow {
+        display: none;
     }
 
     .fvr-challenge-number,
     .fvr-challenge-icon {
-        width: 42px;
-        height: 42px;
-        font-size: 18px;
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
     }
 
+    .fvr-challenge-number,
     .fvr-challenge-icon {
         display: none;
     }
 
     .fvr-solution-check {
-        grid-column: 1;
-        grid-row: 1;
-        width: 42px;
-        height: 42px;
-        margin: 0;
+        display: none;
     }
 
     .fvr-solution-card > div {
-        grid-column: 2;
+        grid-column: auto;
     }
 
     .fvr-challenge-card h3,
     .fvr-solution-card h3 {
-        font-size: 15px;
+        margin-bottom: 6px;
+        font-size: 14px;
     }
 
     .fvr-challenge-card p,
     .fvr-solution-card p {
-        font-size: 13px;
+        font-size: 12px;
+        line-height: 1.45;
     }
 }
 
@@ -7020,15 +7270,15 @@ h3 {
 
     .tms-process-section {
         padding: 72px 0 34px;
-        background-position: center top;
+        background: #f8fbfd;
     }
 
     .fvr-workflow-heading h2 {
-        font-size: 40px;
+        font-size: 30px;
     }
 
     .tms-process-section .fvr-workflow-heading h2 {
-        font-size: 32px;
+        font-size: 30px;
     }
 
     .fvr-workflow-grid {
@@ -7037,8 +7287,12 @@ h3 {
 
     .tms-process-wave {
         grid-template-columns: 1fr;
-        gap: 16px;
+        gap: 14px;
         justify-items: center;
+        width: 100%;
+        max-width: 340px;
+        margin: 0 auto;
+        padding-top: 0;
     }
 
     .fvr-workflow-card {
@@ -7046,14 +7300,20 @@ h3 {
     }
 
     .tms-process-card {
-        width: min(100%, 340px);
+        width: min(100%, 320px);
         min-height: 0;
+        margin: 0 auto;
+        padding: 20px 18px;
         text-align: center;
     }
 
     .tms-process-icon {
+        width: 50px;
+        height: 50px;
         margin-left: auto;
         margin-right: auto;
+        margin-bottom: 14px;
+        font-size: 20px;
     }
 
     .tms-process-card .fvr-card-line {
@@ -7073,6 +7333,27 @@ h3 {
 }
 
 @media (max-width: 575.98px) {
+    .tms-process-section {
+        padding: 62px 0 30px;
+    }
+
+    .tms-process-wave {
+        max-width: 310px;
+    }
+
+    .tms-process-card {
+        width: min(100%, 300px);
+        padding: 18px 16px;
+    }
+
+    .tms-process-card h3 {
+        font-size: 15px;
+    }
+
+    .tms-process-card p {
+        font-size: 12px;
+    }
+
     .fvr-workflow-benefits {
         grid-template-columns: 1fr;
     }
@@ -8079,4 +8360,192 @@ h3 {
 
     }
 
+}
+
+/* Mobile responsive polish */
+@media (max-width: 767.98px) {
+    .hero-section .container,
+    .fvr-banner .container,
+    .page-banner .container {
+        max-width: 100%;
+    }
+
+    .hero-copy h1,
+    .fvr-banner h1,
+    .page-banner-copy h1 {
+        max-width: 100%;
+        overflow-wrap: break-word;
+    }
+
+    .hero-copy h1 {
+        max-width: 340px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 28px;
+    }
+
+    .hero-copy .eyebrow,
+    .fvr-banner-label {
+        display: inline-flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 100%;
+        white-space: normal;
+        text-align: center;
+    }
+
+    .fvr-banner-copy {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .fvr-banner h1,
+    .fvr-overview-content h2,
+    .fvr-challenges-heading h2,
+    .fvr-workflow-heading h2,
+    .tms-process-section .fvr-workflow-heading h2,
+    .fvr-features-copy h2,
+    .fvr-why-content h2,
+    .erfq-ai-intelligence-heading h2,
+    .shipment-advantage-heading h2 {
+        font-size: 28px;
+        line-height: 1.18;
+    }
+
+    .fvr-title-line,
+    .fvr-overview-line,
+    .fvr-card-line,
+    .tms-process-card .fvr-card-line {
+        display: none;
+    }
+
+    .fvr-overview-section::after,
+    .tms-integrations-section::before,
+    .erfq-ai-intelligence-section::before {
+        display: none;
+    }
+
+    .fvr-banner-actions,
+    .fvr-overview-actions {
+        justify-content: center;
+    }
+
+    .fvr-overview-actions a,
+    .fvr-banner-actions a {
+        width: min(100%, 340px);
+        min-width: 0;
+    }
+
+    .page-banner-copy {
+        padding-left: 0;
+        border-left: 0;
+        text-align: center;
+    }
+
+    .page-breadcrumb {
+        justify-content: center;
+    }
+
+    .product-showcase-row + .product-showcase-row {
+        border-top: 0;
+    }
+
+    .product-showcase-panel,
+    .product-showcase-row,
+    .product-showcase-image img {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hero-copy h1,
+    .fvr-banner h1,
+    .fvr-overview-content h2,
+    .fvr-challenges-heading h2,
+    .fvr-workflow-heading h2,
+    .tms-process-section .fvr-workflow-heading h2,
+    .fvr-features-copy h2,
+    .fvr-why-content h2,
+    .erfq-ai-intelligence-heading h2,
+    .shipment-advantage-heading h2,
+    .section-copy h2,
+    .section-heading h2,
+    .services-page-heading h2,
+    .contact-info-heading h2,
+    .about-overview-copy h2,
+    .company-focus-content h2,
+    .support-team-heading h2,
+    .hall-fame-heading h2,
+    .product-showcase-copy h2,
+    .choose-content h2,
+    .fvr-capabilities-heading h2,
+    .fvr-faq-list > h2,
+    .fvr-faq-cta h2 {
+        font-size: 25px;
+        line-height: 1.2;
+        margin-bottom: 2%;
+    }
+
+    .hero-copy h1 {
+        max-width: 320px;
+        font-size: 25px;
+    }
+
+    .hero-copy .eyebrow,
+    .fvr-banner-label,
+    .eyebrow {
+        font-size: 11px;
+    }
+
+    .page-banner-copy h1 {
+        font-size: 32px;
+    }
+}
+
+/* Mobile component alignment fixes */
+@media (max-width: 767.98px) {
+    .fvr-why-content h3 {
+        justify-content: flex-start;
+        max-width: 320px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+    }
+
+    .fvr-why-list {
+        max-width: 320px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .fvr-why-list li,
+    .fvr-why-list span,
+    .fvr-why-list strong {
+        text-align: left;
+    }
+
+    .fvr-faq-ready {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+    }
+
+    .fvr-faq-ready p {
+        max-width: 260px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    .fvr-faq-item,
+    .fvr-faq-item summary,
+    .fvr-faq-item > p {
+        text-align: left;
+    }
+
+    .fvr-faq-item summary span {
+        flex: 1 1 auto;
+    }
 }
