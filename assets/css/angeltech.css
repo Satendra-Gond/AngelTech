@@ -1380,15 +1380,7 @@ h3 {
     font-weight: 800;
 }
 
-.product-showcase-text li::before {
-    content: "\f058";
-    position: absolute;
-    left: 0;
-    top: 1px;
-    color: var(--angel-cyan);
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-}
+
 
 .product-discover-link {
     display: inline-flex;
