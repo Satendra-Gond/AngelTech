@@ -285,6 +285,8 @@
         var testimonialDots = testimonialSlider.querySelector(".testimonial-dots");
         var testimonialPrev = testimonialSlider.querySelector("[data-testimonial-prev]");
         var testimonialNext = testimonialSlider.querySelector("[data-testimonial-next]");
+        var testimonialSection = testimonialSlider.closest(".testimonial-section");
+        var testimonialImage = testimonialSection ? testimonialSection.querySelector("[data-testimonial-image]") : null;
         var testimonialIndex = 0;
         var testimonialTimer = null;
 
@@ -294,6 +296,15 @@
             testimonialSlides.forEach(function (slide, slideIndex) {
                 slide.classList.toggle("is-active", slideIndex === testimonialIndex);
             });
+
+            if (testimonialImage) {
+                var activeSlide = testimonialSlides[testimonialIndex];
+                var imageSrc = activeSlide ? activeSlide.getAttribute("data-testimonial-image-src") : "";
+
+                if (imageSrc && testimonialImage.getAttribute("src") !== imageSrc) {
+                    testimonialImage.setAttribute("src", imageSrc);
+                }
+            }
 
             testimonialSlider.querySelectorAll(".testimonial-dot").forEach(function (dot, dotIndex) {
                 dot.classList.toggle("is-active", dotIndex === testimonialIndex);
