@@ -101,6 +101,7 @@ a {
     /* width: 226px; */
     height: auto;
     display: block;
+    margin-bottom: 2%;
 }
 
 .navbar-nav {
