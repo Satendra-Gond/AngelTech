@@ -1180,7 +1180,7 @@ h3 {
 
 .client-logo {
     width: 150px;
-    height: 64px;
+    height: 82px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1189,7 +1189,7 @@ h3 {
 
 .client-logo img {
     max-width: 100%;
-    max-height: 58px;
+    max-height: 76px;
     object-fit: contain;
     filter: saturate(0.92);
     opacity: 0.92;
@@ -4010,7 +4010,7 @@ h3 {
     }
 
     .client-logo {
-        width: 128px;
+        width: 160px;
     }
 
     .testimonial-section {
