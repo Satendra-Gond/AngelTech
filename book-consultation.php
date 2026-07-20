@@ -178,7 +178,7 @@ if($user_name == null && $user_name ==''){
 
 // admin mail details
 
-$admin_to= "shilpa@startbitsolutions.com";
+$admin_to= "rohit@startbitsolutions.com";
 
 $admin_to_name = "Startbit Business";
 
@@ -188,7 +188,7 @@ $subject = $admin_subject;
 
 $body = $admin_message;
 
-$admin_bcc = ['shilpa@startbitsolutions.com', 'harshkukreja@startbitsolutions.com','manishasoni@startbitsolutions.com'];
+$admin_bcc = ['shilpa@startbitsolutions.com', 'rohit@startbitsolutions.com'];
 
 $admin_reply=$user_email;
 
